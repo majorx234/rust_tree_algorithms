@@ -11,3 +11,6 @@ path = "src/lib.rs"
 [[bin]]
 name = "tree_print"
 path = "src/tree_print/bin/main.rs"
+
+[dependencies]
+rand = "0.8.5"
