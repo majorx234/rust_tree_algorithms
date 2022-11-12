@@ -1,0 +1,13 @@
+[package]
+name = "rust_tree_algorithms"
+version = "0.0.1"
+authors = ["MajorX234 <majorx234@googlemail.com>"]
+edition = "2018"
+
+[lib]
+name = "tree_lib"
+path = "src/lib.rs"
+
+[[bin]]
+name = "tree_print"
+path = "src/tree_print/bin/main.rs"
