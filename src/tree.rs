@@ -77,6 +77,29 @@ impl BinTree {
         }
     }
 
+    pub fn deep_search_tree_nonrec(&self, item_to_search: i64) -> bool {
+        let mut stack = Vec::<(&Self, usize)>::new();
+        stack.push((&self, 0));
+        while let Some((bin_tree, level)) = stack.pop() {
+            match bin_tree {
+                BinTree::Branch(item, left_tree, right_tree) => {
+                    if *item == item_to_search {
+                        return true;
+                    }
+                    stack.push((right_tree, level + 1));
+                    stack.push((left_tree, level + 1));
+                }
+                BinTree::Leaf(item) => {
+                    if *item == item_to_search {
+                        return true;
+                    }
+                    println!("L{}", item);
+                }
+            }
+        }
+        false
+    }
+
     pub fn print_tree(&self) {
         self.print_tree_level_recursive(0);
     }
