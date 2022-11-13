@@ -77,6 +77,40 @@ impl BinTree {
         }
     }
 
+    pub fn print_tree_nonrec(&self) {
+        let mut stack = Vec::<(&Self, usize)>::new();
+        stack.push((&self, 0));
+        let mut print_stack = Vec::<(i64, usize)>::new();
+        while let Some((bin_tree, level)) = stack.pop() {
+            match bin_tree {
+                BinTree::Branch(item, left_tree, right_tree) => {
+                    print_stack.push((*item, level));
+                    stack.push((right_tree, level + 1));
+                    stack.push((left_tree, level + 1));
+                }
+                BinTree::Leaf(item) => {
+                    for _ in 0..level {
+                        print!("   ");
+                    }
+                    println!("L{}", item);
+                    match print_stack.pop() {
+                        Some((item, level)) => {
+                            for _ in 0..level {
+                                print!("   ");
+                            }
+                            println!("B{}", item);
+                        }
+                        None => (),
+                    }
+                }
+            }
+        }
+    }
+
+    pub fn print_tree(&self) {
+        self.print_tree_level_recursive(0);
+    }
+
     pub fn deep_search_tree_nonrec(&self, item_to_search: i64) -> bool {
         let mut stack = Vec::<(&Self, usize)>::new();
         stack.push((&self, 0));
@@ -98,9 +132,5 @@ impl BinTree {
             }
         }
         false
-    }
-
-    pub fn print_tree(&self) {
-        self.print_tree_level_recursive(0);
     }
 }
