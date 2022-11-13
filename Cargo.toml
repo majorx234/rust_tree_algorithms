@@ -12,5 +12,10 @@ path = "src/lib.rs"
 name = "tree_print"
 path = "src/tree_print/bin/main.rs"
 
+[[bin]]
+name = "test_find_complete_subtree"
+path = "src/test_find_complete_subtree/bin/main.rs"
+
+
 [dependencies]
 rand = "0.8.5"
